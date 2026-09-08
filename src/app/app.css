@@ -3163,3 +3163,375 @@ button {
     letter-spacing: -0.01em !important;
   }
 }
+/* =========================================================
+   CORPASSION — MIDNIGHT BLUE PREMIUM THEME
+   Add at the VERY END of app.css
+   Existing CSS remains untouched.
+   ========================================================= */
+
+/* ---------- GLOBAL BACKGROUND ---------- */
+
+html,
+body {
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(30, 90, 180, 0.16),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 85% 25%,
+      rgba(0, 190, 255, 0.10),
+      transparent 30%
+    ),
+    linear-gradient(
+      135deg,
+      #020712 0%,
+      #061226 48%,
+      #020713 100%
+    ) !important;
+}
+
+/* ---------- MAIN SITE ---------- */
+
+.corpassion-site {
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(20, 70, 150, 0.13),
+      transparent 38%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(3, 10, 24, 0.96),
+      rgba(2, 7, 18, 0.98)
+    ) !important;
+}
+
+/* ---------- AMBIENT LIGHT ---------- */
+
+.ambient-one {
+  background:
+    radial-gradient(
+      circle,
+      rgba(0, 190, 255, 0.18),
+      transparent 68%
+    ) !important;
+}
+
+.ambient-two {
+  background:
+    radial-gradient(
+      circle,
+      rgba(35, 85, 190, 0.16),
+      transparent 68%
+    ) !important;
+}
+
+/* ---------- HEADER ---------- */
+
+.site-header {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3, 11, 27, 0.92),
+      rgba(3, 11, 27, 0.68)
+    ) !important;
+  backdrop-filter: blur(18px);
+}
+
+/* ---------- BRAND ---------- */
+
+.brand-mark {
+  background:
+    linear-gradient(
+      135deg,
+      #0b3d91,
+      #087ea4
+    ) !important;
+
+  box-shadow:
+    0 0 24px rgba(0, 180, 255, 0.22) !important;
+}
+
+/* ---------- NAVIGATION ---------- */
+
+.nav-link {
+  color: rgba(235, 244, 255, 0.72) !important;
+}
+
+.nav-link:hover {
+  color: #ffffff !important;
+}
+
+.nav-cta {
+  border-color: rgba(0, 190, 255, 0.30) !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(8, 53, 112, 0.72),
+      rgba(0, 116, 150, 0.52)
+    ) !important;
+
+  box-shadow:
+    0 0 24px rgba(0, 170, 255, 0.12) !important;
+}
+
+/* ---------- MEGA MENUS ---------- */
+
+.mega-menu {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(5, 17, 39, 0.98),
+      rgba(2, 10, 25, 0.98)
+    ) !important;
+
+  border-color: rgba(70, 150, 220, 0.18) !important;
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.55),
+    0 0 45px rgba(0, 110, 190, 0.08) !important;
+}
+
+/* ---------- HERO ---------- */
+
+.hero-section {
+  background:
+    radial-gradient(
+      circle at 72% 38%,
+      rgba(0, 155, 230, 0.10),
+      transparent 32%
+    ) !important;
+}
+
+.status-pill {
+  border-color: rgba(0, 190, 255, 0.25) !important;
+  background: rgba(0, 120, 190, 0.08) !important;
+}
+
+.status-dot {
+  background: #00cfff !important;
+  box-shadow:
+    0 0 14px rgba(0, 207, 255, 0.75) !important;
+}
+
+.hero-content h1 span {
+  background:
+    linear-gradient(
+      90deg,
+      #ffffff 0%,
+      #72d9ff 48%,
+      #00d9ff 100%
+    ) !important;
+
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.primary-button {
+  background:
+    linear-gradient(
+      135deg,
+      #0759a8,
+      #008fb8
+    ) !important;
+
+  box-shadow:
+    0 12px 35px rgba(0, 145, 220, 0.20) !important;
+}
+
+.primary-button:hover {
+  box-shadow:
+    0 15px 42px rgba(0, 175, 240, 0.30) !important;
+}
+
+/* ---------- HERO DATA VISUAL ---------- */
+
+.data-card,
+.floating-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(8, 25, 53, 0.90),
+      rgba(3, 13, 31, 0.94)
+    ) !important;
+
+  border-color: rgba(65, 150, 220, 0.20) !important;
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.38),
+    0 0 40px rgba(0, 125, 205, 0.08) !important;
+}
+
+.score-ring {
+  border-color: rgba(0, 190, 255, 0.55) !important;
+  box-shadow:
+    0 0 25px rgba(0, 190, 255, 0.12) !important;
+}
+
+/* ---------- SECTIONS ---------- */
+
+.section {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(3, 10, 24, 0.08),
+      rgba(4, 15, 34, 0.18)
+    ) !important;
+}
+
+/* ---------- CARDS ---------- */
+
+.service-card,
+.solution-card,
+.resource-card,
+.trust-item,
+.pricing-card,
+.request-card,
+.testimonial-card,
+.media-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(7, 21, 45, 0.72),
+      rgba(3, 12, 29, 0.82)
+    ) !important;
+
+  border-color: rgba(65, 145, 215, 0.17) !important;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.20) !important;
+}
+
+.service-card:hover,
+.solution-card:hover,
+.resource-card:hover,
+.pricing-card:hover {
+  border-color: rgba(0, 190, 255, 0.34) !important;
+
+  box-shadow:
+    0 24px 60px rgba(0, 80, 150, 0.16),
+    0 0 30px rgba(0, 180, 255, 0.06) !important;
+}
+
+/* ---------- DASHBOARD ---------- */
+
+.dashboard-window {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(7, 22, 48, 0.92),
+      rgba(2, 10, 25, 0.96)
+    ) !important;
+
+  border-color: rgba(65, 150, 220, 0.20) !important;
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.42),
+    0 0 50px rgba(0, 100, 180, 0.08) !important;
+}
+
+.dashboard-sidebar span.active {
+  background: rgba(0, 180, 255, 0.09) !important;
+  color: #62dcff !important;
+}
+
+.dashboard-live {
+  color: #00d9ff !important;
+}
+
+.dashboard-stats > div,
+.dashboard-chart,
+.dashboard-projects {
+  background: rgba(7, 25, 52, 0.58) !important;
+  border-color: rgba(65, 150, 220, 0.14) !important;
+}
+
+/* ---------- PRICING ---------- */
+
+.pricing-card.pricing-featured {
+  border-color: rgba(0, 190, 255, 0.35) !important;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(7, 43, 77, 0.78),
+      rgba(3, 18, 38, 0.90)
+    ) !important;
+
+  box-shadow:
+    0 25px 65px rgba(0, 100, 180, 0.14) !important;
+}
+
+.popular-label {
+  background: rgba(0, 190, 255, 0.12) !important;
+  color: #5fdcff !important;
+}
+
+/* ---------- LINKS & ACCENTS ---------- */
+
+.text-link,
+.inline-button,
+.service-arrow,
+.solution-card a,
+.resource-card a {
+  color: #63dfff !important;
+}
+
+.eyebrow {
+  color: #4ed8ff !important;
+}
+
+/* ---------- FORM ---------- */
+
+.request-form input,
+.request-form textarea {
+  background: rgba(3, 15, 34, 0.72) !important;
+  border-color: rgba(65, 150, 220, 0.18) !important;
+  color: #ffffff !important;
+}
+
+.request-form input:focus,
+.request-form textarea:focus {
+  border-color: rgba(0, 190, 255, 0.50) !important;
+  box-shadow:
+    0 0 0 3px rgba(0, 180, 255, 0.08) !important;
+}
+
+/* ---------- FOOTER ---------- */
+
+.site-footer {
+  background:
+    linear-gradient(
+      180deg,
+      #020914,
+      #01050d
+    ) !important;
+
+  border-top-color: rgba(65, 150, 220, 0.14) !important;
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 600px) {
+  .corpassion-site {
+    background:
+      linear-gradient(
+        180deg,
+        #030b1a,
+        #020817
+      ) !important;
+  }
+
+  .hero-section {
+    background:
+      radial-gradient(
+        circle at 50% 25%,
+        rgba(0, 150, 220, 0.11),
+        transparent 38%
+      ) !important;
+  }
+}
