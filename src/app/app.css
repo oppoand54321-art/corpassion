@@ -3806,3 +3806,11 @@ body {
   object-fit: contain !important;
   display: block !important;
 }
+.corpassion-marquee {
+  box-shadow:
+    0 0 25px rgba(0, 190, 255, 0.10),
+    inset 0 1px 0 rgba(120, 220, 255, 0.10),
+    inset 0 -1px 0 rgba(20, 100, 180, 0.12) !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
