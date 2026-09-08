@@ -3800,3 +3800,9 @@ body {
 .hero-section {
   padding-top: 18px !important;
 }
+.brand img {
+  width: 250px !important;
+  height: 78px !important;
+  object-fit: contain !important;
+  display: block !important;
+}
