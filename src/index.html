@@ -1,13 +1,32 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="utf-8">
-  <title>CorpassionPlatform</title>
+  <title>Corpassion - B2B Lead Generation & Business Intelligence</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+  
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Tailwind Play CDN for Instant Styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { 900: '#0B132B', 800: '#1C2541', 700: '#3A506B' },
+            accent: { DEFAULT: '#00F5D4', hover: '#00C4A7' },
+            surface: { dark: '#131C31', card: '#18223C', border: '#2A3A5E' }
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body>
+<body class="bg-[#0B132B] text-slate-100 antialiased selection:bg-accent selection:text-navy-900">
   <app-root></app-root>
 </body>
 </html>
