@@ -3619,12 +3619,42 @@ body {
     padding-left: 10px;
   }
 }
-/* CORPASSION NAVBAR — FULL BLACK BACKGROUND */
-.site-header {
-  background: #000000 !important;
-  background-color: #000000 !important;
-}
+/* =========================================
+   NAVBAR INNER BOX ONLY — BLACK
+   ========================================= */
 
 .site-header .nav-shell {
   background: #000000 !important;
+}
+
+/* Logo — small and left */
+.site-header .brand {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.site-header .brand img {
+  width: 125px;
+  height: auto;
+  max-width: 125px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Keep logo slightly toward left */
+.site-header .nav-shell {
+  padding-left: 12px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .site-header .brand img {
+    width: 105px;
+    max-width: 105px;
+  }
+
+  .site-header .nav-shell {
+    padding-left: 10px;
+  }
 }
