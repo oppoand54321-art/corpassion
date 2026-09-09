@@ -3619,3 +3619,12 @@ body {
     padding-left: 10px;
   }
 }
+/* CORPASSION NAVBAR — FULL BLACK BACKGROUND */
+.site-header {
+  background: #000000 !important;
+  background-color: #000000 !important;
+}
+
+.site-header .nav-shell {
+  background: #000000 !important;
+}
