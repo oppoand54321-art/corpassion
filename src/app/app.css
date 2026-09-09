@@ -3552,59 +3552,6 @@ body {
   transform-origin: center center !important;
 }
 
-/* =========================================================
-   CORPASSION — MOVING INTELLIGENCE MARQUEE
-   ========================================================= */
-
-.corpassion-marquee {
-  width: 100%;
-  overflow: hidden;
-  position: relative;
-  padding: 18px 0;
-  border-top: 1px solid rgba(65, 150, 220, 0.14);
-  border-bottom: 1px solid rgba(65, 150, 220, 0.14);
-  background: rgba(2, 10, 25, 0.55);
-}
-
-.corpassion-marquee-track {
-  display: flex;
-  width: max-content;
-  animation: corpassionMarquee 28s linear infinite;
-  will-change: transform;
-}
-
-.corpassion-marquee-content {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  white-space: nowrap;
-}
-
-.corpassion-marquee-content span {
-  display: inline-block;
-  margin: 0 28px;
-  color: rgba(225, 240, 255, 0.78);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-}
-
-.corpassion-marquee-content i {
-  font-style: normal;
-  color: #35d9ff;
-  font-size: 13px;
-  text-shadow: 0 0 12px rgba(0, 210, 255, 0.45);
-}
-
-@keyframes corpassionMarquee {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
 
 /* ---------- MOBILE ---------- */
 
@@ -3625,137 +3572,6 @@ body {
   }
 }
 
-/* =========================================================
-   CORPASSION — MARQUEE ENHANCED PREMIUM STYLE
-   ========================================================= */
-
-.corpassion-marquee {
-  padding: 26px 0 !important;
-  min-height: 72px !important;
-
-  background:
-    linear-gradient(
-      90deg,
-      rgba(4, 20, 45, 0.96),
-      rgba(5, 32, 62, 0.92),
-      rgba(4, 20, 45, 0.96)
-    ) !important;
-
-  border-top: 1px solid rgba(80, 190, 255, 0.22) !important;
-  border-bottom: 1px solid rgba(80, 190, 255, 0.22) !important;
-
-  box-shadow:
-    0 0 35px rgba(0, 150, 220, 0.08) !important;
-}
-
-.corpassion-marquee-content span {
-  margin: 0 32px !important;
-
-  font-size: 16px !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.13em !important;
-
-  background:
-    linear-gradient(
-      90deg,
-      #ffffff 0%,
-      #7cddff 45%,
-      #00cfff 100%
-    ) !important;
-
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-}
-
-.corpassion-marquee-content i {
-  margin: 0 4px !important;
-
-  color: #65e5ff !important;
-  font-size: 18px !important;
-
-  text-shadow:
-    0 0 14px rgba(0, 210, 255, 0.65) !important;
-}
-
-/* ---------- MOBILE ---------- */
-
-@media (max-width: 600px) {
-
-  .corpassion-marquee {
-    padding: 21px 0 !important;
-    min-height: 62px !important;
-  }
-
-  .corpassion-marquee-content span {
-    margin: 0 22px !important;
-    font-size: 12px !important;
-    letter-spacing: 0.11em !important;
-  }
-
-  .corpassion-marquee-content i {
-    font-size: 14px !important;
-  }
-}
-
-/* =========================================================
-   CORPASSION — SECOND MARQUEE / REVERSE MOTION
-   ========================================================= */
-
-.corpassion-marquee-reverse {
-  background:
-    linear-gradient(
-      90deg,
-      rgba(2, 12, 30, 0.94),
-      rgba(4, 25, 50, 0.88),
-      rgba(2, 12, 30, 0.94)
-    ) !important;
-
-  border-top: 0 !important;
-  border-bottom: 1px solid rgba(0, 190, 255, 0.14) !important;
-
-  padding: 18px 0 !important;
-}
-
-.corpassion-marquee-reverse .corpassion-marquee-track {
-  animation-name: corpassionMarqueeReverse !important;
-  animation-duration: 32s !important;
-  animation-timing-function: linear !important;
-  animation-iteration-count: infinite !important;
-}
-
-.corpassion-marquee-reverse .corpassion-marquee-content span {
-  background:
-    linear-gradient(
-      90deg,
-      #ffffff 0%,
-      #8be7ff 50%,
-      #35bfff 100%
-    ) !important;
-
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-}
-
-.corpassion-marquee-reverse .corpassion-marquee-content i {
-  color: #8be7ff !important;
-
-  text-shadow:
-    0 0 14px rgba(80, 220, 255, 0.55) !important;
-}
-
-@keyframes corpassionMarqueeReverse {
-
-  from {
-    transform: translateX(-50%);
-  }
-
-  to {
-    transform: translateX(0);
-  }
-
-}
 
 /* ---------- MOBILE ---------- */
 
@@ -3770,47 +3586,36 @@ body {
   }
 
 }
-/* =========================================================
-   CORPASSION — FIX SECOND MARQUEE MOTION
-   ========================================================= */
-
-.corpassion-marquee-reverse .corpassion-marquee-track {
-  animation: corpassionMarqueeReverse 32s linear infinite !important;
-  transform: translateX(-50%);
-  will-change: transform;
+/* CORPASSION LOGO — TOP LEFT */
+.site-header .brand {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 0;
+  padding-left: 0;
 }
 
-@keyframes corpassionMarqueeReverse {
-  0% {
-    transform: translateX(-50%);
+.site-header .brand img {
+  width: 125px;
+  height: auto;
+  max-width: 125px;
+  object-fit: contain;
+  display: block;
+}
+
+/* Keep logo close to the left edge */
+.site-header .nav-shell {
+  padding-left: 12px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .site-header .brand img {
+    width: 105px;
+    max-width: 105px;
   }
 
-  100% {
-    transform: translateX(0);
+  .site-header .nav-shell {
+    padding-left: 10px;
   }
-}
-/* =========================================================
-   CORPASSION — REDUCE MARQUEE / HERO GAP
-   ========================================================= */
-
-.corpassion-marquee-reverse {
-  margin-bottom: -18px !important;
-}
-
-.hero-section {
-  padding-top: 18px !important;
-}
-.brand img {
-  width: 250px !important;
-  height: 78px !important;
-  object-fit: contain !important;
-  display: block !important;
-}
-.corpassion-marquee {
-  box-shadow:
-    0 0 25px rgba(0, 190, 255, 0.10),
-    inset 0 1px 0 rgba(120, 220, 255, 0.10),
-    inset 0 -1px 0 rgba(20, 100, 180, 0.12) !important;
-  position: relative !important;
-  z-index: 2 !important;
 }
