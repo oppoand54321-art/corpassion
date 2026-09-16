@@ -1,494 +1,123 @@
-import {
-  Component,
-  AfterViewInit,
-  ElementRef,
-  ViewChild,
-  HostListener,
-  OnDestroy
-} from '@angular/core';
-
-import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { NgFor, NgClass, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
+  imports: [NgFor, NgClass, NgIf],
   templateUrl: './app.html',
-  styleUrls: ['./app.css']
+  styleUrl: './app.css'
 })
-export class App implements AfterViewInit, OnDestroy {
+export class App implements AfterViewInit {
+  @ViewChild('bgVideo') bgVideo?: ElementRef<HTMLVideoElement>;
 
-  @ViewChild('waveCanvas')
-  canvasRef!: ElementRef<HTMLCanvasElement>;
+  items = [
+    {
+      key: 'web',
+      kicker: 'SYSTEM 01',
+      title: 'WEB DEVELOPMENT',
+      line1: 'CUSTOM WEBSITES & E-COMMERCE',
+      line2: 'FAST, HIGH-PERFORMANCE BUILDS',
+      body: 'We design and build fast, secure websites and online stores that convert visitors into clients. From landing pages to full e-commerce, every build is clean, mobile-ready, and made to perform under real business traffic.',
+      tone: 'tone-orange'
+    },
+    {
+      key: 'design',
+      kicker: 'SYSTEM 02',
+      title: 'DESIGN SERVICES',
+      line1: 'UI/UX & BRAND IDENTITY',
+      line2: 'MOTION GRAPHICS ANIMATION',
+      body: 'We shape brands that look sharp and feel clear. UI/UX, identity systems, and motion graphics work together so your product is easy to use, easy to remember, and ready for web, app, and campaign screens.',
+      tone: 'tone-yellow'
+    },
+    {
+      key: 'erp',
+      kicker: 'SYSTEM 03',
+      title: 'CUSTOM ERP',
+      line1: 'ENTERPRISE RESOURCE PLANNING',
+      line2: 'FULL UAE VAT/WPS COMPLIANCE',
+      body: 'Custom ERP built around how your company actually works. Finance, stock, HR, and operations stay in one system, with UAE VAT and WPS rules handled correctly so reporting stays clean and audits stay simple.',
+      tone: 'tone-purple'
+    },
+    {
+      key: 'warm',
+      kicker: 'SYSTEM 04',
+      title: 'WARM MARKETING',
+      line1: 'SMM ACROSS INSTAGRAM, TIKTOK, FACEBOOK',
+      line2: 'PAID ADS MANAGEMENT & BRAND DEVELOPMENT',
+      body: 'We grow audiences that already know your name. Content, community, and paid ads on Instagram, TikTok, and Facebook stay on-brand, so warm leads keep moving toward enquiry, booking, and repeat business.',
+      tone: 'tone-pink'
+    },
+    {
+      key: 'app',
+      kicker: 'SYSTEM 05',
+      title: 'APP DEVELOPMENT',
+      line1: 'NATIVE iOS & ANDROID APPS',
+      line2: 'CROSS-PLATFORM FLUTTER DEVELOPMENT',
+      body: 'Native iOS and Android apps, plus Flutter when one codebase should cover both. We build stable, fast products with clean UX, secure APIs, and store-ready releases that your team can grow after launch.',
+      tone: 'tone-blue'
+    },
+    {
+      key: 'ai',
+      kicker: 'SYSTEM 06',
+      title: 'AI AGENTS',
+      line1: 'VOICE AI AGENTS',
+      line2: 'MULTI-AGENT AUTOMATION SYSTEMS',
+      body: 'Voice agents and multi-agent systems that answer, qualify, and complete tasks without extra staff load. They connect to your tools, follow your rules, and keep conversations natural while work moves in the background.',
+      tone: 'tone-teal'
+    },
+    {
+      key: 'crm',
+      kicker: 'SYSTEM 07',
+      title: 'CUSTOM CRM',
+      line1: 'WHATSAPP INTEGRATION',
+      line2: 'AI-POWERED CUSTOMER MANAGEMENT',
+      body: 'A CRM built around WhatsApp and your sales flow. Leads, chats, follow-ups, and team notes stay in one place, with AI helping you reply faster, miss fewer clients, and see what each conversation needs next.',
+      tone: 'tone-green'
+    },
+    {
+      key: 'cold',
+      kicker: 'SYSTEM 08',
+      title: 'COLD MARKETING',
+      line1: 'B2B EMAIL MARKETING',
+      line2: 'LINKEDIN OUTREACH & COLD CALLING',
+      body: 'Targeted B2B outreach that opens new doors. Email sequences, LinkedIn contact, and structured calling work as one system to reach the right accounts, start real talks, and book meetings without wasting the list.',
+      tone: 'tone-red'
+    }
+  ];
 
-  private ctx!: CanvasRenderingContext2D;
+  activeKey = '';
+  cardOpen = false;
+  hideTimer: ReturnType<typeof setTimeout> | null = null;
 
-  private width = window.innerWidth;
-  private height = window.innerHeight;
-
-  private animationFrameId = 0;
-
-  private step = 0;
-
-  /* =========================================================
-     SIMPLE CUSTOM CURSOR
-     ========================================================= */
-
-  private cursor!: HTMLDivElement;
-
-  private cursorX = 0;
-  private cursorY = 0;
-
-  private cursorTargetX = 0;
-  private cursorTargetY = 0;
-
-  private cursorAnimationId = 0;
-
-  private cursorEnabled = false;
-
-  ngAfterViewInit(): void {
-
-    this.initCanvas();
-
-    this.startAnimation();
-
-    this.initCursor();
-
+  get activeItem() {
+    return this.items.find((item) => item.key === this.activeKey);
   }
 
-  /* =========================================================
-     WINDOW RESIZE
-     ========================================================= */
-
-  @HostListener('window:resize')
-  onResize(): void {
-
-    if (!this.canvasRef) {
-      return;
-    }
-
-    const canvas = this.canvasRef.nativeElement;
-
-    this.width = window.innerWidth;
-    this.height = window.innerHeight;
-
-    canvas.width = this.width;
-    canvas.height = this.height;
-
+  ngAfterViewInit() {
+    const v = this.bgVideo?.nativeElement;
+    if (!v) return;
+    v.muted = true;
+    v.loop = true;
+    v.playsInline = true;
+    v.play().catch(() => {});
   }
 
-  /* =========================================================
-     MOUSE MOVE
-     ========================================================= */
-
-  @HostListener('document:mousemove', ['$event'])
-  onMouseMove(event: MouseEvent): void {
-
-    if (!this.cursorEnabled || !this.cursor) {
-      return;
-    }
-
-    this.cursorTargetX = event.clientX;
-    this.cursorTargetY = event.clientY;
-
-    this.updateCursorState(event.target);
-
+  openCard(key: string) {
+    if (this.hideTimer) clearTimeout(this.hideTimer);
+    this.activeKey = key;
+    this.cardOpen = true;
   }
 
-  /* =========================================================
-     CANVAS
-     ========================================================= */
-
-  private initCanvas(): void {
-
-    const canvas = this.canvasRef.nativeElement;
-
-    this.width = window.innerWidth;
-    this.height = window.innerHeight;
-
-    canvas.width = this.width;
-    canvas.height = this.height;
-
-    const context = canvas.getContext('2d');
-
-    if (!context) {
-      return;
-    }
-
-    this.ctx = context;
-
-    this.ctx.lineCap = 'round';
-    this.ctx.lineJoin = 'round';
-
+  keepOpen() {
+    if (this.hideTimer) clearTimeout(this.hideTimer);
   }
 
-  /* =========================================================
-     WAVE ANIMATION
-     ========================================================= */
-
-  private startAnimation = (): void => {
-
-    if (!this.ctx) {
-      return;
-    }
-
-    this.ctx.clearRect(
-      0,
-      0,
-      this.width,
-      this.height
-    );
-
-    this.drawWave(
-      0.0019,
-      62,
-      0.38,
-      'rgba(0, 245, 212, 0.62)',
-      2.4,
-      0.45
-    );
-
-    this.drawWave(
-      0.0028,
-      48,
-      0.68,
-      'rgba(0, 220, 195, 0.42)',
-      2.0,
-      0.48
-    );
-
-    this.drawWave(
-      0.00135,
-      82,
-      0.22,
-      'rgba(74, 144, 226, 0.38)',
-      2.1,
-      0.42
-    );
-
-    this.drawWave(
-      0.0037,
-      30,
-      0.95,
-      'rgba(0, 245, 212, 0.28)',
-      1.4,
-      0.51
-    );
-
-    this.drawWave(
-      0.0009,
-      105,
-      0.16,
-      'rgba(42, 58, 94, 0.55)',
-      2.2,
-      0.39
-    );
-
-    this.drawWave(
-      0.0011,
-      125,
-      0.11,
-      'rgba(0, 245, 212, 0.16)',
-      1.2,
-      0.54
-    );
-
-    this.step += 0.018;
-
-    this.animationFrameId =
-      requestAnimationFrame(this.startAnimation);
-
-  };
-
-  /* =========================================================
-     DRAW WAVE
-     ========================================================= */
-
-  private drawWave(
-    frequency: number,
-    amplitude: number,
-    speedMultiplier: number,
-    color: string,
-    lineWidth: number,
-    verticalPosition: number
-  ): void {
-
-    if (!this.ctx) {
-      return;
-    }
-
-    this.ctx.beginPath();
-
-    this.ctx.lineWidth = lineWidth;
-    this.ctx.strokeStyle = color;
-
-    if (color.includes('0, 245, 212')) {
-
-      this.ctx.shadowColor =
-        'rgba(0, 245, 212, 0.35)';
-
-      this.ctx.shadowBlur = 12;
-
-    } else {
-
-      this.ctx.shadowBlur = 0;
-
-    }
-
-    const stepSize =
-      this.width > 1200 ? 7 : 10;
-
-    for (
-      let x = 0;
-      x <= this.width;
-      x += stepSize
-    ) {
-
-      const primaryWave =
-        Math.sin(
-          x * frequency +
-          this.step * speedMultiplier
-        ) * amplitude;
-
-      const secondaryWave =
-        Math.cos(
-          x * 0.0011 +
-          this.step * 0.48
-        ) * 34;
-
-      const tertiaryWave =
-        Math.sin(
-          x * 0.00055 +
-          this.step * 0.23
-        ) * 18;
-
-      const y =
-        primaryWave +
-        secondaryWave +
-        tertiaryWave +
-        this.height * verticalPosition;
-
-      if (x === 0) {
-
-        this.ctx.moveTo(x, y);
-
-      } else {
-
-        this.ctx.lineTo(x, y);
-
-      }
-
-    }
-
-    this.ctx.stroke();
-
-    this.ctx.shadowBlur = 0;
-
+  scheduleClose() {
+    if (this.hideTimer) clearTimeout(this.hideTimer);
+    this.hideTimer = setTimeout(() => {
+      this.cardOpen = false;
+      this.activeKey = '';
+    }, 160);
   }
-
-  /* =========================================================
-     INITIALIZE CURSOR
-     ========================================================= */
-
-  private initCursor(): void {
-
-    /*
-     * Do not enable on touch devices.
-     */
-
-    if (
-      window.matchMedia &&
-      window.matchMedia('(pointer: coarse)').matches
-    ) {
-      return;
-    }
-
-    this.cursorEnabled = true;
-
-    this.cursor =
-      document.createElement('div');
-
-    this.cursor.className =
-      'corpassion-cursor';
-
-    document.body.appendChild(
-      this.cursor
-    );
-
-    this.cursorX =
-      window.innerWidth / 2;
-
-    this.cursorY =
-      window.innerHeight / 2;
-
-    this.cursorTargetX =
-      this.cursorX;
-
-    this.cursorTargetY =
-      this.cursorY;
-
-    this.startCursorAnimation();
-
-  }
-
-  /* =========================================================
-     CURSOR STATE
-     ========================================================= */
-
-  private updateCursorState(
-    target: EventTarget | null
-  ): void {
-
-    if (!this.cursor) {
-      return;
-    }
-
-    if (!(target instanceof Element)) {
-
-      this.cursor.dataset ['state'] =
-        'default';
-
-      return;
-
-    }
-
-    const element =
-      target.closest(
-        'button, a, [role="button"], input, textarea, select, video, .service-card, .pricing-card, .dashboard-card, .industry-card, .premium-card'
-      );
-
-    if (!element) {
-
-      this.cursor.dataset ['state'] =
-        'default';
-
-      return;
-
-    }
-
-    if (
-      element.matches(
-        'button, [role="button"]'
-      )
-    ) {
-
-      this.cursor.dataset ['state'] =
-        'button';
-
-      return;
-
-    }
-
-    if (element.matches('video')) {
-
-      this.cursor.dataset ['state'] =
-        'video';
-
-      return;
-
-    }
-
-    if (
-      element.matches(
-        '.service-card, .pricing-card, .dashboard-card, .industry-card, .premium-card'
-      )
-    ) {
-
-      this.cursor.dataset ['state'] =
-        'card';
-
-      return;
-
-    }
-
-    if (
-      element.matches(
-        'input, textarea, select'
-      )
-    ) {
-
-      this.cursor.dataset ['state'] =
-        'input';
-
-      return;
-
-    }
-
-    if (element.matches('a')) {
-
-      this.cursor.dataset ['state'] =
-        'link';
-
-      return;
-
-    }
-
-    this.cursor.dataset ['state'] =
-      'default';
-
-  }
-
-  /* =========================================================
-     CURSOR SMOOTH MOVEMENT
-     ========================================================= */
-
-  private startCursorAnimation = (): void => {
-
-    if (!this.cursor) {
-      return;
-    }
-
-    this.cursorX +=
-      (
-        this.cursorTargetX -
-        this.cursorX
-      ) * 0.18;
-
-    this.cursorY +=
-      (
-        this.cursorTargetY -
-        this.cursorY
-      ) * 0.18;
-
-    this.cursor.style.transform =
-      `translate3d(${this.cursorX}px, ${this.cursorY}px, 0) translate(-50%, -50%)`;
-
-    this.cursorAnimationId =
-      requestAnimationFrame(
-        this.startCursorAnimation
-      );
-
-  };
-
-  /* =========================================================
-     CLEANUP
-     ========================================================= */
-
-  ngOnDestroy(): void {
-
-    if (this.animationFrameId) {
-
-      cancelAnimationFrame(
-        this.animationFrameId
-      );
-
-    }
-
-    if (this.cursorAnimationId) {
-
-      cancelAnimationFrame(
-        this.cursorAnimationId
-      );
-
-    }
-
-    if (this.cursor) {
-
-      this.cursor.remove();
-
-    }
-
-  }
-
 }
