@@ -9,7 +9,8 @@
     class="heading"
     [class.active]="activeKey === item.key"
     (mouseenter)="openCard(item.key)"
-    (mouseleave)="scheduleClose()">
+    (mouseleave)="scheduleClose()"
+    (click)="openCard(item.key)">
     {{ item.title }}
   </button>
 </nav>

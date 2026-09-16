@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, AfterViewInit, HostListener } from '@angular/core';
 import { NgFor, NgClass, NgIf } from '@angular/common';
 
 @Component({
@@ -96,44 +96,48 @@ export class App implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-  const vids = [
-    this.bgVideo?.nativeElement,
-    this.waterVideo?.nativeElement
-  ].filter(Boolean) as HTMLVideoElement[];
+    const vids = [
+      this.bgVideo?.nativeElement,
+      this.waterVideo?.nativeElement
+    ].filter(Boolean) as HTMLVideoElement[];
 
-  const playNow = (el: HTMLVideoElement) => {
-    el.muted = true;
-    el.loop = true;
-    el.playsInline = true;
-    el.autoplay = true;
-    const p = el.play();
-    if (p && p.catch) p.catch(() => {});
-  };
+    const playNow = (el: HTMLVideoElement) => {
+      el.muted = true;
+      el.loop = true;
+      el.playsInline = true;
+      el.autoplay = true;
+      const p = el.play();
+      if (p && p.catch) p.catch(() => {});
+    };
 
-  vids.forEach((el) => {
-    playNow(el);
-
-    el.addEventListener('pause', () => playNow(el));
-    el.addEventListener('ended', () => {
-      el.currentTime = 0.05;
-      playNow(el);
-    });
-    el.addEventListener('stalled', () => playNow(el));
-    el.addEventListener('suspend', () => playNow(el));
-  });
-
-  document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) vids.forEach(playNow);
-  });
-
-  window.addEventListener('focus', () => vids.forEach(playNow));
-
-  setInterval(() => {
     vids.forEach((el) => {
-      if (el.paused) playNow(el);
+      playNow(el);
+      el.addEventListener('pause', () => playNow(el));
+      el.addEventListener('ended', () => {
+        el.currentTime = 0.05;
+        playNow(el);
+      });
     });
-  }, 1500);
-}
+
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) vids.forEach(playNow);
+    });
+
+    setInterval(() => {
+      vids.forEach((el) => {
+        if (el.paused) playNow(el);
+      });
+    }, 1500);
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocClick(ev: MouseEvent) {
+    const t = ev.target as HTMLElement;
+    if (t.closest('.heading') || t.closest('.glass-card')) return;
+    this.cardOpen = false;
+    this.activeKey = '';
+  }
+
   openCard(key: string) {
     if (this.hideTimer) clearTimeout(this.hideTimer);
     this.activeKey = key;
@@ -149,6 +153,6 @@ export class App implements AfterViewInit {
     this.hideTimer = setTimeout(() => {
       this.cardOpen = false;
       this.activeKey = '';
-    }, 160);
+    }, 80);
   }
 }
