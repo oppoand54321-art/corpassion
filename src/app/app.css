@@ -147,12 +147,11 @@
   right: 0;
   bottom: 0;
   width: 100vw;
-  height: 26vh;
+  height: 16vh;
   object-fit: cover;
   object-position: center bottom;
   z-index: 1;
   pointer-events: none;
   opacity: 0.9;
-  -webkit-mask-image: linear-gradient(to top, #000 55%, transparent 100%);
-  mask-image: linear-gradient(to top, #000 55%, transparent 100%);
+
 }

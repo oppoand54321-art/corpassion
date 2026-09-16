@@ -10,6 +10,7 @@ import { NgFor, NgClass, NgIf } from '@angular/common';
 })
 export class App implements AfterViewInit {
   @ViewChild('bgVideo') bgVideo?: ElementRef<HTMLVideoElement>;
+  @ViewChild('waterVideo') waterVideo?: ElementRef<HTMLVideoElement>;
 
   items = [
     {
@@ -95,14 +96,44 @@ export class App implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const v = this.bgVideo?.nativeElement;
-    if (!v) return;
-    v.muted = true;
-    v.loop = true;
-    v.playsInline = true;
-    v.play().catch(() => {});
-  }
+  const vids = [
+    this.bgVideo?.nativeElement,
+    this.waterVideo?.nativeElement
+  ].filter(Boolean) as HTMLVideoElement[];
 
+  const playNow = (el: HTMLVideoElement) => {
+    el.muted = true;
+    el.loop = true;
+    el.playsInline = true;
+    el.autoplay = true;
+    const p = el.play();
+    if (p && p.catch) p.catch(() => {});
+  };
+
+  vids.forEach((el) => {
+    playNow(el);
+
+    el.addEventListener('pause', () => playNow(el));
+    el.addEventListener('ended', () => {
+      el.currentTime = 0.05;
+      playNow(el);
+    });
+    el.addEventListener('stalled', () => playNow(el));
+    el.addEventListener('suspend', () => playNow(el));
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) vids.forEach(playNow);
+  });
+
+  window.addEventListener('focus', () => vids.forEach(playNow));
+
+  setInterval(() => {
+    vids.forEach((el) => {
+      if (el.paused) playNow(el);
+    });
+  }, 1500);
+}
   openCard(key: string) {
     if (this.hideTimer) clearTimeout(this.hideTimer);
     this.activeKey = key;
