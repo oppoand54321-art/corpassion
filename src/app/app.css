@@ -155,3 +155,46 @@
   opacity: 0.9;
 
 }
+@media (max-width: 900px) {
+  .glass-card {
+    width: min(92vw, 5in);
+    height: auto;
+    min-height: 0;
+    max-height: 62vh;
+    padding: 22px 20px;
+    border-radius: 20px;
+  }
+
+  .glass-card h2 {
+    font-size: 26px;
+    margin: 0 0 8px;
+  }
+
+  .glass-card .kicker {
+    font-size: 11px;
+  }
+
+  .glass-card .line,
+  .glass-card .body {
+    font-size: 13px;
+  }
+
+  .glass-card .body {
+    max-height: 28vh;
+  }
+
+  .side-headings {
+    top: 12px;
+    right: 12px;
+    bottom: 12px;
+  }
+
+  .heading {
+    font-size: 13px;
+    letter-spacing: 0.12em;
+  }
+
+  .water {
+    height: 14vh;
+  }
+}
