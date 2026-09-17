@@ -213,25 +213,31 @@
 
 @media (max-width: 900px) {
   :host::before {
-    width: 36px;
-    height: 36px;
-    left: 32%;
-    top: 8vh;
+    width: 28px;
+    height: 28px;
+    left: 28%;
+    top: 6vh;
+  }
+
+  .bg-video {
+    object-fit: cover;
+    object-position: left top;
   }
 
   .building {
-    width: min(78vw, 560px);
-    max-height: 58vh;
+    left: 50%;
+    width: min(70vw, 260px);
+    max-height: 26vh;
     top: auto;
-    bottom: 6vh;
-    opacity: 0.90;
+    bottom: 15vh;
+    opacity: 0.94;
   }
 
   .glass-card {
     width: min(92vw, 5in);
     height: auto;
     min-height: 0;
-    max-height: 62vh;
+    max-height: 58vh;
     padding: 22px 20px;
     border-radius: 20px;
   }
@@ -255,14 +261,14 @@
   }
 
   .side-headings {
-    top: 12px;
-    right: 12px;
-    bottom: 12px;
+    top: 8px;
+    right: 8px;
+    bottom: 18vh;
   }
 
   .heading {
-    font-size: 13px;
-    letter-spacing: 0.12em;
+    font-size: 10px;
+    letter-spacing: 0.08em;
   }
 
   .water {
