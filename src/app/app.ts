@@ -12,6 +12,8 @@ export class App implements AfterViewInit {
   @ViewChild('bgVideo') bgVideo?: ElementRef<HTMLVideoElement>;
   @ViewChild('waterVideo') waterVideo?: ElementRef<HTMLVideoElement>;
 
+  buildingSrc = '/images/building.png';
+
   items = [
     {
       key: 'web',
