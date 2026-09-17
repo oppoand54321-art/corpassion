@@ -1,35 +1,246 @@
-<video #bgVideo class="bg-video" autoplay muted loop playsinline>
-  <source src="/videos/app_logo.mp4" type="video/mp4" />
-</video>
+<div class="corpassion-page">
 
-<img class="building" [src]="buildingSrc" alt="" />
+  <!-- LEFT 25% — LOGO VIDEO -->
+  <section class="logo-stage">
+    <video #bgVideo class="bg-video" autoplay muted loop playsinline>
+      <source src="/videos/app_logo.mp4" type="video/mp4" />
+    </video>
 
-<nav class="side-headings">
-  <button
-    *ngFor="let item of items"
-    type="button"
-    class="heading"
-    [class.active]="activeKey === item.key"
-    (mouseenter)="openCard(item.key)"
-    (mouseleave)="scheduleClose()"
-    (click)="openCard(item.key)">
-    {{ item.title }}
-  </button>
-</nav>
+    <div class="logo-label">
+      <span>CORPASSION</span>
+      <small>DIGITAL SYSTEMS</small>
+    </div>
+  </section>
 
-<article
-  class="glass-card"
-  [class.open]="cardOpen"
-  [ngClass]="activeItem?.tone || ''"
-  (mouseenter)="keepOpen()"
-  (mouseleave)="scheduleClose()">
-  <p class="kicker">{{ activeItem?.kicker }}</p>
-  <h2>{{ activeItem?.title }}</h2>
-  <p class="line">{{ activeItem?.line1 }}</p>
-  <p class="line">{{ activeItem?.line2 }}</p>
-  <p class="body" *ngIf="activeItem?.body">{{ activeItem?.body }}</p>
-</article>
 
-<video #waterVideo class="water" autoplay muted loop playsinline>
-  <source src="/videos/water.mp4" type="video/mp4" />
-</video>
+  <!-- RIGHT 75% — NEW BRIGHT INTERFACE -->
+  <main class="content-stage">
+
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <!-- TOP HEADER -->
+    <header class="top-bar">
+      <div class="brand-mark">
+        <span class="brand-dot"></span>
+        CORPASSION
+      </div>
+
+      <div class="system-status">
+        <span class="status-dot"></span>
+        DIGITAL SOLUTIONS
+      </div>
+    </header>
+
+
+    <!-- SERVICES -->
+    <nav class="service-nav">
+
+      <button
+        *ngFor="let item of items"
+        type="button"
+        class="service-button"
+        [class.active]="activeKey === item.key"
+        (mouseenter)="openCard(item.key)"
+        (click)="openCard(item.key)">
+        <span class="service-number">{{ item.number }}</span>
+        <span>{{ item.title }}</span>
+      </button>
+
+    </nav>
+
+
+    <!-- MAIN INFORMATION AREA -->
+    <section class="hero-information">
+
+      <div class="intro-copy">
+        <p class="eyebrow">SMART DIGITAL INFRASTRUCTURE</p>
+
+        <h1>
+          BUILD.
+          <span>CREATE.</span>
+          <strong>GROW.</strong>
+        </h1>
+
+        <p class="intro-text">
+          Digital products, intelligent systems and creative technology
+          built around the way modern businesses actually operate.
+        </p>
+      </div>
+
+
+      <!-- SERVICE CARD -->
+      <article
+        class="service-card"
+        [class.open]="cardOpen"
+        [ngClass]="activeItem?.tone || ''"
+        (mouseenter)="keepOpen()"
+        (mouseleave)="scheduleClose()">
+
+        <div class="card-top">
+          <span class="card-kicker">
+            {{ activeItem?.kicker || 'SYSTEM OVERVIEW' }}
+          </span>
+
+          <span class="card-index">
+            {{ activeItem?.number || '00' }}
+          </span>
+        </div>
+
+        <div class="card-line"></div>
+
+        <h2>
+          {{ activeItem?.title || 'DIGITAL SOLUTIONS' }}
+        </h2>
+
+        <p class="card-subtitle">
+          {{ activeItem?.line1 || 'TECHNOLOGY FOR MODERN BUSINESS' }}
+        </p>
+
+        <p class="card-subtitle second">
+          {{ activeItem?.line2 || 'DESIGNED TO SCALE' }}
+        </p>
+
+        <p class="card-body">
+          {{
+            activeItem?.body ||
+            'Explore our complete range of digital services, intelligent automation and technology solutions.'
+          }}
+        </p>
+
+        <div class="feature-row">
+          <span *ngFor="let feature of (activeItem?.features || [])">
+            {{ feature }}
+          </span>
+        </div>
+
+        <div class="card-footer">
+          <span>STRATEGY</span>
+          <span>DESIGN</span>
+          <span>TECHNOLOGY</span>
+          <span>RESULTS</span>
+        </div>
+
+      </article>
+
+
+      <!-- RIGHT VERTICAL IMAGE RAIL -->
+      <aside class="vertical-rail">
+
+        <div class="rail-track">
+
+          <div
+            class="rail-card"
+            *ngFor="let image of marqueeImages; let i = index">
+
+            <img
+              [src]="image"
+              [alt]="'Corpassion visual ' + (i + 1)" />
+
+            <span>0{{ (i % 9) + 1 }}</span>
+
+          </div>
+
+          <!-- DUPLICATE FOR SEAMLESS LOOP -->
+          <div
+            class="rail-card"
+            *ngFor="let image of marqueeImages; let i = index">
+
+            <img
+              [src]="image"
+              [alt]="'Corpassion visual duplicate ' + (i + 1)" />
+
+            <span>0{{ (i % 9) + 1 }}</span>
+
+          </div>
+
+        </div>
+
+      </aside>
+
+    </section>
+
+
+    <!-- BOTTOM LANGUAGE / IMAGE MARQUEE -->
+    <section class="image-marquee">
+
+      <div class="marquee-label">
+        <span>CREATIVE</span>
+        <span>TECH</span>
+        <span>AI</span>
+        <span>BUSINESS</span>
+      </div>
+
+      <div class="marquee-window">
+
+        <div class="marquee-track">
+
+          <div
+            class="marquee-image"
+            *ngFor="let image of marqueeImages">
+
+            <img
+              [src]="image"
+              alt="Corpassion service visual" />
+
+          </div>
+
+          <div
+            class="marquee-image"
+            *ngFor="let image of marqueeImages">
+
+            <img
+              [src]="image"
+              alt="Corpassion service visual" />
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SCROLL INDICATOR -->
+    <div class="scroll-hint">
+      <span>SCROLL TO EXPLORE</span>
+      <i></i>
+    </div>
+
+  </main>
+
+
+  <!-- NEXT FULL SCREEN -->
+  <section class="next-screen">
+
+    <div class="next-content">
+
+      <p class="eyebrow">CORPASSION DIGITAL ECOSYSTEM</p>
+
+      <h2>
+        ONE PARTNER.
+        <span>MANY POSSIBILITIES.</span>
+      </h2>
+
+      <p>
+        From websites and applications to AI agents, CRM, ERP,
+        branding and marketing systems — every layer can work together
+        as one connected digital ecosystem.
+      </p>
+
+      <div class="next-points">
+        <span>WEB</span>
+        <span>APP</span>
+        <span>AI</span>
+        <span>ERP</span>
+        <span>CRM</span>
+        <span>DESIGN</span>
+        <span>MARKETING</span>
+      </div>
+
+    </div>
+
+  </section>
+
+</div>

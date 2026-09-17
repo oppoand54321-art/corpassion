@@ -1,4 +1,11 @@
-import { Component, ElementRef, ViewChild, AfterViewInit, HostListener } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  HostListener
+} from '@angular/core';
+
 import { NgFor, NgClass, NgIf } from '@angular/common';
 
 @Component({
@@ -9,152 +16,299 @@ import { NgFor, NgClass, NgIf } from '@angular/common';
   styleUrl: './app.css'
 })
 export class App implements AfterViewInit {
-  @ViewChild('bgVideo') bgVideo?: ElementRef<HTMLVideoElement>;
-  @ViewChild('waterVideo') waterVideo?: ElementRef<HTMLVideoElement>;
 
-  buildingSrc = '/images/building.png';
+  @ViewChild('bgVideo')
+  bgVideo?: ElementRef<HTMLVideoElement>;
+
+
+  /*
+   * 10–15 IMAGES
+   *
+   * Put your images inside:
+   * public/images/marquee/
+   *
+   * Names:
+   * 01.jpg
+   * 02.jpg
+   * 03.jpg
+   * ...
+   * 15.jpg
+   */
+  marqueeImages = [
+    '/images/marquee/01.jpg',
+    '/images/marquee/02.jpg',
+    '/images/marquee/03.jpg',
+    '/images/marquee/04.jpg',
+    '/images/marquee/05.jpg',
+    '/images/marquee/06.jpg',
+    '/images/marquee/07.jpg',
+    '/images/marquee/08.jpg',
+    '/images/marquee/09.jpg',
+    '/images/marquee/10.jpg',
+    '/images/marquee/11.jpg',
+    '/images/marquee/12.jpg',
+    '/images/marquee/13.jpg',
+    '/images/marquee/14.jpg',
+    '/images/marquee/15.jpg'
+  ];
+
 
   items = [
+
     {
       key: 'web',
+      number: '01',
       kicker: 'SYSTEM 01',
       title: 'WEB DEVELOPMENT',
       line1: 'CUSTOM WEBSITES & E-COMMERCE',
       line2: 'FAST, HIGH-PERFORMANCE BUILDS',
-      body: 'We design and build fast, secure websites and online stores that convert visitors into clients. From landing pages to full e-commerce, every build is clean, mobile-ready, and made to perform under real business traffic.',
-      tone: 'tone-orange'
+      body:
+        'We design and build fast, secure websites and online stores that convert visitors into clients. From landing pages to full e-commerce platforms, every build is clean, mobile-ready, scalable and engineered for real business traffic.',
+      features: [
+        'Landing Pages',
+        'E-Commerce',
+        'Business Websites',
+        'Web Applications'
+      ],
+      tone: 'tone-teal'
     },
+
     {
       key: 'design',
+      number: '02',
       kicker: 'SYSTEM 02',
       title: 'DESIGN SERVICES',
       line1: 'UI/UX & BRAND IDENTITY',
-      line2: 'MOTION GRAPHICS ANIMATION',
-      body: 'We shape brands that look sharp and feel clear. UI/UX, identity systems, and motion graphics work together so your product is easy to use, easy to remember, and ready for web, app, and campaign screens.',
-      tone: 'tone-yellow'
+      line2: 'MOTION GRAPHICS & ANIMATION',
+      body:
+        'We shape brands that look sharp and feel clear. UI/UX, identity systems, visual direction and motion graphics work together so your product becomes easier to use, easier to remember and ready for every digital platform.',
+      features: [
+        'UI / UX',
+        'Brand Identity',
+        'Motion Graphics',
+        'Visual Systems'
+      ],
+      tone: 'tone-aqua'
     },
+
     {
       key: 'erp',
+      number: '03',
       kicker: 'SYSTEM 03',
       title: 'CUSTOM ERP',
       line1: 'ENTERPRISE RESOURCE PLANNING',
-      line2: 'FULL UAE VAT/WPS COMPLIANCE',
-      body: 'Custom ERP built around how your company actually works. Finance, stock, HR, and operations stay in one system, with UAE VAT and WPS rules handled correctly so reporting stays clean and audits stay simple.',
-      tone: 'tone-purple'
+      line2: 'UAE VAT / WPS READY SYSTEMS',
+      body:
+        'Custom ERP systems built around the way your company actually works. Finance, inventory, HR, operations and reporting can stay connected inside one structured business platform.',
+      features: [
+        'Finance',
+        'Inventory',
+        'HR',
+        'Operations'
+      ],
+      tone: 'tone-mint'
     },
+
     {
       key: 'warm',
+      number: '04',
       kicker: 'SYSTEM 04',
       title: 'WARM MARKETING',
-      line1: 'SMM ACROSS INSTAGRAM, TIKTOK, FACEBOOK',
-      line2: 'PAID ADS MANAGEMENT & BRAND DEVELOPMENT',
-      body: 'We grow audiences that already know your name. Content, community, and paid ads on Instagram, TikTok, and Facebook stay on-brand, so warm leads keep moving toward enquiry, booking, and repeat business.',
-      tone: 'tone-pink'
+      line1: 'SOCIAL MEDIA & COMMUNITY',
+      line2: 'PAID ADS & BRAND DEVELOPMENT',
+      body:
+        'We turn existing attention into measurable business opportunities. Content, community and paid advertising across Instagram, TikTok and Facebook stay connected to your brand and commercial goals.',
+      features: [
+        'Social Media',
+        'Paid Advertising',
+        'Content',
+        'Brand Growth'
+      ],
+      tone: 'tone-cyan'
     },
+
     {
       key: 'app',
+      number: '05',
       kicker: 'SYSTEM 05',
       title: 'APP DEVELOPMENT',
-      line1: 'NATIVE iOS & ANDROID APPS',
+      line1: 'NATIVE iOS & ANDROID',
       line2: 'CROSS-PLATFORM FLUTTER DEVELOPMENT',
-      body: 'Native iOS and Android apps, plus Flutter when one codebase should cover both. We build stable, fast products with clean UX, secure APIs, and store-ready releases that your team can grow after launch.',
-      tone: 'tone-blue'
+      body:
+        'Native iOS and Android applications, plus Flutter when one codebase should cover both platforms. We build stable products with clean UX, secure APIs and scalable architecture.',
+      features: [
+        'iOS',
+        'Android',
+        'Flutter',
+        'API Integration'
+      ],
+      tone: 'tone-sea'
     },
+
     {
       key: 'ai',
+      number: '06',
       kicker: 'SYSTEM 06',
       title: 'AI AGENTS',
       line1: 'VOICE AI AGENTS',
       line2: 'MULTI-AGENT AUTOMATION SYSTEMS',
-      body: 'Voice agents and multi-agent systems that answer, qualify, and complete tasks without extra staff load. They connect to your tools, follow your rules, and keep conversations natural while work moves in the background.',
-      tone: 'tone-teal'
+      body:
+        'Intelligent agents that can answer, qualify, automate and complete tasks. AI systems connect with business tools and workflows while keeping interactions natural and operationally useful.',
+      features: [
+        'Voice AI',
+        'Automation',
+        'Multi-Agent',
+        'AI Workflows'
+      ],
+      tone: 'tone-fresh'
     },
+
     {
       key: 'crm',
+      number: '07',
       kicker: 'SYSTEM 07',
       title: 'CUSTOM CRM',
       line1: 'WHATSAPP INTEGRATION',
       line2: 'AI-POWERED CUSTOMER MANAGEMENT',
-      body: 'A CRM built around WhatsApp and your sales flow. Leads, chats, follow-ups, and team notes stay in one place, with AI helping you reply faster, miss fewer clients, and see what each conversation needs next.',
-      tone: 'tone-green'
+      body:
+        'A CRM built around your actual sales flow. Leads, WhatsApp conversations, follow-ups, customer notes and team activity stay connected so opportunities are easier to manage and harder to miss.',
+      features: [
+        'WhatsApp',
+        'Lead Management',
+        'AI Assistance',
+        'Sales Pipeline'
+      ],
+      tone: 'tone-ocean'
     },
+
     {
       key: 'cold',
+      number: '08',
       kicker: 'SYSTEM 08',
       title: 'COLD MARKETING',
       line1: 'B2B EMAIL MARKETING',
       line2: 'LINKEDIN OUTREACH & COLD CALLING',
-      body: 'Targeted B2B outreach that opens new doors. Email sequences, LinkedIn contact, and structured calling work as one system to reach the right accounts, start real talks, and book meetings without wasting the list.',
-      tone: 'tone-red'
+      body:
+        'Structured B2B outreach designed to open new conversations. Email campaigns, LinkedIn outreach and calling can work together to identify relevant accounts and create qualified business opportunities.',
+      features: [
+        'B2B Email',
+        'LinkedIn',
+        'Cold Calling',
+        'Lead Generation'
+      ],
+      tone: 'tone-turquoise'
     }
+
   ];
 
-  activeKey = '';
-  cardOpen = false;
+
+  activeKey = 'web';
+  cardOpen = true;
+
   hideTimer: ReturnType<typeof setTimeout> | null = null;
 
+
   get activeItem() {
-    return this.items.find((item) => item.key === this.activeKey);
+    return this.items.find(
+      (item) => item.key === this.activeKey
+    );
   }
 
-  ngAfterViewInit() {
-    const vids = [
-      this.bgVideo?.nativeElement,
-      this.waterVideo?.nativeElement
-    ].filter(Boolean) as HTMLVideoElement[];
 
-    const playNow = (el: HTMLVideoElement) => {
-      el.muted = true;
-      el.loop = true;
-      el.playsInline = true;
-      el.autoplay = true;
-      const p = el.play();
-      if (p && p.catch) p.catch(() => {});
+  ngAfterViewInit(): void {
+
+    const video = this.bgVideo?.nativeElement;
+
+    if (!video) {
+      return;
+    }
+
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.autoplay = true;
+
+    const playVideo = () => {
+      const promise = video.play();
+
+      if (promise && promise.catch) {
+        promise.catch(() => {});
+      }
     };
 
-    vids.forEach((el) => {
-      playNow(el);
-      el.addEventListener('pause', () => playNow(el));
-      el.addEventListener('ended', () => {
-        el.currentTime = 0.05;
-        playNow(el);
-      });
+    playVideo();
+
+    video.addEventListener('pause', playVideo);
+
+    video.addEventListener('ended', () => {
+      video.currentTime = 0.05;
+      playVideo();
     });
 
-    document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) vids.forEach(playNow);
-    });
+    document.addEventListener(
+      'visibilitychange',
+      () => {
+        if (!document.hidden) {
+          playVideo();
+        }
+      }
+    );
 
-    setInterval(() => {
-      vids.forEach((el) => {
-        if (el.paused) playNow(el);
-      });
-    }, 1500);
   }
 
-  @HostListener('document:click', ['$event'])
-  onDocClick(ev: MouseEvent) {
-    const t = ev.target as HTMLElement;
-    if (t.closest('.heading') || t.closest('.glass-card')) return;
+
+  @HostListener(
+    'document:click',
+    ['$event']
+  )
+  onDocumentClick(event: MouseEvent): void {
+
+    const target =
+      event.target as HTMLElement;
+
+    if (
+      target.closest('.service-button') ||
+      target.closest('.service-card')
+    ) {
+      return;
+    }
+
     this.cardOpen = false;
-    this.activeKey = '';
+
   }
 
-  openCard(key: string) {
-    if (this.hideTimer) clearTimeout(this.hideTimer);
+
+  openCard(key: string): void {
+
+    if (this.hideTimer) {
+      clearTimeout(this.hideTimer);
+    }
+
     this.activeKey = key;
     this.cardOpen = true;
+
   }
 
-  keepOpen() {
-    if (this.hideTimer) clearTimeout(this.hideTimer);
+
+  keepOpen(): void {
+
+    if (this.hideTimer) {
+      clearTimeout(this.hideTimer);
+    }
+
   }
 
-  scheduleClose() {
-    if (this.hideTimer) clearTimeout(this.hideTimer);
+
+  scheduleClose(): void {
+
+    if (this.hideTimer) {
+      clearTimeout(this.hideTimer);
+    }
+
     this.hideTimer = setTimeout(() => {
       this.cardOpen = false;
-      this.activeKey = '';
-    }, 80);
+    }, 180);
+
   }
+
 }
