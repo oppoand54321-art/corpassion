@@ -13,29 +13,40 @@
   </section>
 
 
-  <!-- RIGHT 75% — NEW BRIGHT INTERFACE -->
+  <div class="fixed-shade"></div>
+
+
+  <aside class="vertical-rail">
+    <div class="rail-track">
+      <div class="rail-card" *ngFor="let image of marqueeImages; let i = index">
+        <img [src]="image" [alt]="'Corpassion visual ' + (i + 1)" />
+        <span>0{{ (i % 9) + 1 }}</span>
+      </div>
+      <div class="rail-card" *ngFor="let image of marqueeImages; let i = index">
+        <img [src]="image" [alt]="'Corpassion visual duplicate ' + (i + 1)" />
+        <span>0{{ (i % 9) + 1 }}</span>
+      </div>
+    </div>
+  </aside>
+
+
   <main class="content-stage">
 
     <div class="ambient ambient-one"></div>
     <div class="ambient ambient-two"></div>
 
-    <!-- TOP HEADER -->
     <header class="top-bar">
       <div class="brand-mark">
         <span class="brand-dot"></span>
         CORPASSION
       </div>
-
       <div class="system-status">
         <span class="status-dot"></span>
         DIGITAL SOLUTIONS
       </div>
     </header>
 
-
-    <!-- SERVICES -->
     <nav class="service-nav">
-
       <button
         *ngFor="let item of items"
         type="button"
@@ -46,30 +57,23 @@
         <span class="service-number">{{ item.number }}</span>
         <span>{{ item.title }}</span>
       </button>
-
     </nav>
 
-
-    <!-- MAIN INFORMATION AREA -->
     <section class="hero-information">
 
       <div class="intro-copy">
         <p class="eyebrow">SMART DIGITAL INFRASTRUCTURE</p>
-
         <h1>
           BUILD.
           <span>CREATE.</span>
           <strong>GROW.</strong>
         </h1>
-
         <p class="intro-text">
           Digital products, intelligent systems and creative technology
           built around the way modern businesses actually operate.
         </p>
       </div>
 
-
-      <!-- SERVICE CARD -->
       <article
         class="service-card"
         [class.open]="cardOpen"
@@ -78,131 +82,29 @@
         (mouseleave)="scheduleClose()">
 
         <div class="card-top">
-          <span class="card-kicker">
-            {{ activeItem?.kicker || 'SYSTEM OVERVIEW' }}
-          </span>
-
-          <span class="card-index">
-            {{ activeItem?.number || '00' }}
-          </span>
+          <span class="card-kicker">{{ activeItem?.kicker || 'SYSTEM OVERVIEW' }}</span>
+          <span class="card-index">{{ activeItem?.number || '00' }}</span>
         </div>
-
         <div class="card-line"></div>
-
-        <h2>
-          {{ activeItem?.title || 'DIGITAL SOLUTIONS' }}
-        </h2>
-
-        <p class="card-subtitle">
-          {{ activeItem?.line1 || 'TECHNOLOGY FOR MODERN BUSINESS' }}
-        </p>
-
-        <p class="card-subtitle second">
-          {{ activeItem?.line2 || 'DESIGNED TO SCALE' }}
-        </p>
-
+        <h2>{{ activeItem?.title || 'DIGITAL SOLUTIONS' }}</h2>
+        <p class="card-subtitle">{{ activeItem?.line1 || 'TECHNOLOGY FOR MODERN BUSINESS' }}</p>
+        <p class="card-subtitle second">{{ activeItem?.line2 || 'DESIGNED TO SCALE' }}</p>
         <p class="card-body">
-          {{
-            activeItem?.body ||
-            'Explore our complete range of digital services, intelligent automation and technology solutions.'
-          }}
+          {{ activeItem?.body || 'Explore our complete range of digital services, intelligent automation and technology solutions.' }}
         </p>
-
         <div class="feature-row">
-          <span *ngFor="let feature of (activeItem?.features || [])">
-            {{ feature }}
-          </span>
+          <span *ngFor="let feature of (activeItem?.features || [])">{{ feature }}</span>
         </div>
-
         <div class="card-footer">
           <span>STRATEGY</span>
           <span>DESIGN</span>
           <span>TECHNOLOGY</span>
           <span>RESULTS</span>
         </div>
-
       </article>
 
-
-      <!-- RIGHT VERTICAL IMAGE RAIL -->
-      <aside class="vertical-rail">
-
-        <div class="rail-track">
-
-          <div
-            class="rail-card"
-            *ngFor="let image of marqueeImages; let i = index">
-
-            <img
-              [src]="image"
-              [alt]="'Corpassion visual ' + (i + 1)" />
-
-            <span>0{{ (i % 9) + 1 }}</span>
-
-          </div>
-
-          <!-- DUPLICATE FOR SEAMLESS LOOP -->
-          <div
-            class="rail-card"
-            *ngFor="let image of marqueeImages; let i = index">
-
-            <img
-              [src]="image"
-              [alt]="'Corpassion visual duplicate ' + (i + 1)" />
-
-            <span>0{{ (i % 9) + 1 }}</span>
-
-          </div>
-
-        </div>
-
-      </aside>
-
     </section>
 
-
-    <!-- BOTTOM LANGUAGE / IMAGE MARQUEE -->
-    <section class="image-marquee">
-
-      <div class="marquee-label">
-        <span>CREATIVE</span>
-        <span>TECH</span>
-        <span>AI</span>
-        <span>BUSINESS</span>
-      </div>
-
-      <div class="marquee-window">
-
-        <div class="marquee-track">
-
-          <div
-            class="marquee-image"
-            *ngFor="let image of marqueeImages">
-
-            <img
-              [src]="image"
-              alt="Corpassion service visual" />
-
-          </div>
-
-          <div
-            class="marquee-image"
-            *ngFor="let image of marqueeImages">
-
-            <img
-              [src]="image"
-              alt="Corpassion service visual" />
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- SCROLL INDICATOR -->
     <div class="scroll-hint">
       <span>SCROLL TO EXPLORE</span>
       <i></i>
@@ -211,36 +113,47 @@
   </main>
 
 
-  <!-- NEXT FULL SCREEN -->
   <section class="next-screen">
-
     <div class="next-content">
-
       <p class="eyebrow">CORPASSION DIGITAL ECOSYSTEM</p>
-
       <h2>
         ONE PARTNER.
         <span>MANY POSSIBILITIES.</span>
       </h2>
-
       <p>
         From websites and applications to AI agents, CRM, ERP,
         branding and marketing systems — every layer can work together
         as one connected digital ecosystem.
       </p>
-
       <div class="next-points">
-        <span>WEB</span>
-        <span>APP</span>
-        <span>AI</span>
-        <span>ERP</span>
-        <span>CRM</span>
-        <span>DESIGN</span>
-        <span>MARKETING</span>
+        <span>WEB</span><span>APP</span><span>AI</span><span>ERP</span>
+        <span>CRM</span><span>DESIGN</span><span>MARKETING</span>
       </div>
-
     </div>
+  </section>
 
+
+  <section class="service-page" *ngFor="let page of servicePages" [attr.id]="'page-' + page.key">
+    <div class="service-page-inner">
+      <p class="page-kicker">{{ page.kicker }}</p>
+      <h2 class="page-title">
+        <span class="title-main">{{ firstWord(page.title) }}</span>
+        <span class="title-accent"> {{ restWords(page.title) }}</span>
+      </h2>
+      <h3 class="page-heading" *ngFor="let heading of page.headings">
+        <span class="title-main">{{ firstWord(heading) }}</span>
+        <span class="title-accent"> {{ restWords(heading) }}</span>
+      </h3>
+      <p class="page-body" *ngFor="let para of page.paragraphs">{{ para }}</p>
+      <div class="page-media" *ngIf="page.video">
+        <video class="page-video" [src]="page.video" controls muted playsinline loop></video>
+      </div>
+      <div class="page-gallery" *ngIf="page.images?.length">
+        <figure *ngFor="let img of page.images">
+          <img [src]="img" [alt]="page.title" />
+        </figure>
+      </div>
+    </div>
   </section>
 
 </div>
