@@ -20,6 +20,19 @@ export class App implements AfterViewInit {
   @ViewChild('bgVideo')
   bgVideo?: ElementRef<HTMLVideoElement>;
 
+  @ViewChild('botField')
+  botField?: ElementRef<HTMLInputElement>;
+
+  @ViewChild('botWalk')
+  botWalk?: ElementRef<HTMLVideoElement>;
+
+  botOpen = false;
+  whatsappNumber = '923001234567';
+
+  botMessages: { from: 'bot' | 'user'; text: string }[] = [
+    { from: 'bot', text: 'Hello, how can I help you?' }
+  ];
+
 
   /*
    * 10–15 IMAGES
@@ -255,9 +268,9 @@ export class App implements AfterViewInit {
       ],
       video: '',
       images: [
-        '/images/marquee/01.jpg',
-        '/images/marquee/02.jpg',
-        '/images/marquee/03.jpg'
+        '/images/pages/erp-1.jpg',
+        '/images/pages/erp-2.jpg',
+        '/images/pages/erp-3.jpg'
       ]
     },
 
@@ -276,8 +289,8 @@ export class App implements AfterViewInit {
       ],
       video: '',
       images: [
-        '/images/marquee/04.jpg',
-        '/images/marquee/05.jpg'
+        '/images/pages/warm-1.jpg',
+        '/images/pages/warm-2.jpg'
       ]
     },
 
@@ -296,9 +309,9 @@ export class App implements AfterViewInit {
       ],
       video: '',
       images: [
-        '/images/marquee/06.jpg',
-        '/images/marquee/07.jpg',
-        '/images/marquee/08.jpg'
+        '/images/pages/app-1.jpg',
+        '/images/pages/app-2.jpg',
+        '/images/pages/app-3.jpg'
       ]
     },
 
@@ -335,8 +348,8 @@ export class App implements AfterViewInit {
       ],
       video: '',
       images: [
-        '/images/marquee/09.jpg',
-        '/images/marquee/10.jpg'
+        '/images/pages/crm-1.jpg',
+        '/images/pages/crm-2.jpg'
       ]
     },
 
@@ -355,9 +368,9 @@ export class App implements AfterViewInit {
       ],
       video: '',
       images: [
-        '/images/marquee/11.jpg',
-        '/images/marquee/12.jpg',
-        '/images/marquee/13.jpg'
+        '/images/pages/cold-1.jpg',
+        '/images/pages/cold-2.jpg',
+        '/images/pages/cold-3.jpg'
       ]
     }
 
@@ -490,6 +503,36 @@ export class App implements AfterViewInit {
       this.cardOpen = false;
     }, 180);
 
+  }
+
+
+  toggleBot(): void {
+    this.botOpen = !this.botOpen;
+  }
+
+
+  sendBot(event: Event): void {
+    event.preventDefault();
+
+    const field = this.botField?.nativeElement;
+    const text = (field?.value || '').trim();
+
+    if (!text) {
+      return;
+    }
+
+    this.botMessages.push({ from: 'user', text });
+
+    if (field) {
+      field.value = '';
+    }
+
+    this.botMessages.push({ from: 'bot', text: this.replyBot(text) });
+  }
+
+
+  replyBot(_text: string): string {
+    return 'Wait — connecting you on WhatsApp. Message us here: https://wa.me/' + this.whatsappNumber + '  If someone is available they will reply. Otherwise please come back to this chat a bit later.';
   }
 
 }
